@@ -1,21 +1,18 @@
-server:
-  port: 8091
-
 spring:
   application:
     name: booking-service
-
+  main:
+    web-application-type: servlet   # <---- change to servlet
   data:
     mongodb:
-      host: localhost
-      port: 27017
-      database: bookingdb2   
-
-  main:
-    web-application-type: servlet  
+      uri: mongodb://localhost:27017/bookingdb
+server:
+  port: 8091
 
 eureka:
   client:
+    register-with-eureka: true
+    fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka/
   instance:
