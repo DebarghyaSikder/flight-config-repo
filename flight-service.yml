@@ -1,9 +1,10 @@
 server:
-  port: 0   # random free port
+  port: 8090   
 
 spring:
   application:
     name: flight-service
+
   data:
     mongodb:
       uri: mongodb://localhost:27017/flightdbnew
@@ -11,4 +12,11 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+
+logging:
+  level:
+    org.springframework.data.mongodb.core.ReactiveMongoTemplate: INFO
+    org.springframework.web: INFO
