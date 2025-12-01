@@ -12,7 +12,7 @@ spring:
       database: bookingdb2   
 
   main:
-    web-application-type: reactive  
+    web-application-type: servlet  
 
 eureka:
   client:
