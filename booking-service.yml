@@ -1,12 +1,14 @@
 server:
-  port: 0
+  port: 8091   # 8090 already used by flight-service
 
 spring:
   application:
     name: booking-service
+
   data:
     mongodb:
-      uri: mongodb://localhost:27017/bookingdb
+      uri: mongodb://localhost:27017/bookingdbnew   # second Mongo DB for bookings
+
   rabbitmq:
     host: localhost
     port: 5672
@@ -16,20 +18,12 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
 
-feign:
-  circuitbreaker:
-    enabled: true
-
-resilience4j:
-  circuitbreaker:
-    instances:
-      flightService:
-        sliding-window-size: 5
-        failure-rate-threshold: 50
-        wait-duration-in-open-state: 10s
-
-app:
-  booking:
-    queue: booking-queue
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
