@@ -78,32 +78,32 @@ These settings apply to all services unless overridden.
 server:
   `port: 8761`
 
-spring:
-  application:
-    name: eureka-server
+- spring:
+-  application:
+-    name: eureka-server
 
 ## 3️. API Gateway (`api-gateway.yml`)
 
-spring:
-  application:
-    name: api-gateway
+- spring:
+-  application:
+-    name: api-gateway
 
-  cloud:
-    gateway:
-      routes:
-        - `id: flight-service`
+-  cloud:
+-    gateway:
+-      routes:
+-         `id: flight-service`
           `uri: lb://FLIGHT-SERVICE`
           predicates:
             - `Path=/flight/**`
 
 ## 4️. Flight Service (flight-service.yml)
 
-server:
+- server:
   `port: 8090`
 
-spring:
-  application:
-    name: flight-service
+- spring:
+-  application:
+-    name: `flight-service`
 
   data:
     mongodb:
@@ -114,15 +114,15 @@ spring:
 server:
   `port: 8091`
 
-spring:
-  application:
-    name: booking-service
+- spring:
+-  application:
+-    name: `booking-service`
 
-  data:
-    mongodb:
+-  data:
+-    mongodb:
       `uri: mongodb://localhost:27017/bookingdb`
 
 `rabbitmq:`
-  exchange: booking.exchange
-  routing-key: booking.key
-  queue: booking.queue
+- exchange: booking.exchange
+- routing-key: booking.key
+- queue: booking.queue
