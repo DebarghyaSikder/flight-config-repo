@@ -23,13 +23,11 @@
 
 - flight-config-repo/
 - │
-- ├── application.yml # Global default config applied to all services
-- │
-- ├── eureka-server.yml # Eureka Server configuration
-- ├── api-gateway.yml # API Gateway routing configuration
-- │
-- ├── flight-service.yml # Flight Service config
-- └── booking-service.yml # Booking Service config
+- ├── application.yml                 - **Global default config applied to all services**
+- ├── eureka-server.yml               - **Eureka Server configuration**
+- ├── api-gateway.yml                 - **API Gateway routing configuration**
+- ├── flight-service.yml              - **Flight Service config**
+- └── booking-service.yml             - **Booking Service config**
 
 Each file corresponds to the microservice with the same `spring.application.name`.
 
@@ -47,12 +45,11 @@ Each file corresponds to the microservice with the same `spring.application.name
 
 - For example:
 
-- | Microservice | Config Loaded From |
-- |--------------|--------------------|
+- | Microservice     | Config Loaded From   |
 - | `flight-service` | `flight-service.yml` |
-- | `booking-service` | `booking-service.yml` |
-- | `api-gateway` | `api-gateway.yml` |
-- | `eureka-server` | `eureka-server.yml` |
+- | `booking-service`| `booking-service.yml`|
+- | `api-gateway`    | `api-gateway.yml`    |
+- | `eureka-server`  | `eureka-server.yml`  |
 
 ---
 
@@ -75,15 +72,16 @@ management:
       exposure:
         include: "*"
 These settings apply to all services unless overridden.
+```
 
-## 2️. Eureka Server (`eureka-server.yml`)
-
+## 2. Eureka Server (`eureka-server.yml`)
 server:
   `port: 8761`
 
 spring:
   application:
     name: eureka-server
+
 ## 3️. API Gateway (`api-gateway.yml`)
 
 spring:
@@ -109,7 +107,8 @@ spring:
 
   data:
     mongodb:
-      uri: mongodb://localhost:27017/flightdb
+      uri: `mongodb://localhost:27017/flightdb`
+
 ## 5️. Booking Service (booking-service.yml)
 
 server:
@@ -123,7 +122,7 @@ spring:
     mongodb:
       `uri: mongodb://localhost:27017/bookingdb`
 
-rabbitmq:
+`rabbitmq:`
   exchange: booking.exchange
   routing-key: booking.key
   queue: booking.queue
