@@ -1,23 +1,39 @@
+server:
+  port: 8080
+
 spring:
   application:
     name: api-gateway
 
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
       routes:
+        # =================== FLIGHT-SERVICE ===================
         - id: flight-service
           uri: lb://FLIGHT-SERVICE
           predicates:
-            - Path=/flights/**
+            # external paths exposed by gateway
+            - Path=/api/flights/**,/api/flights/search/**,/api/flights/*
 
+          filters:
+            # /api is removed before forwarding -> flight-service sees /flights/...
+            - StripPrefix=1
+
+        # =================== BOOKING-SERVICE ==================
         - id: booking-service
           uri: lb://BOOKING-SERVICE
           predicates:
-            - Path=/booking/**          
+            - Path=/api/bookings/**
           filters:
-            - StripPrefix=1    
-            
-        - id: notification-service
-          uri: lb://NOTIFICATION-SERVICE
-          predicates:
-            - Path=/notifications/**             
+            - StripPrefix=1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,refresh,gateway
