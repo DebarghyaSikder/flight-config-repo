@@ -4,7 +4,7 @@ spring:
 
   data:
     mongodb:
-      uri: mongodb://localhost:27017/bookingdb
+      uri: mongodb://localhost:27017/booking_micro_db
 
   rabbitmq:
     host: localhost
