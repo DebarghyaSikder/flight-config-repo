@@ -15,4 +15,9 @@ spring:
           predicates:
             - Path=/booking/**          
           filters:
-            - StripPrefix=1             
+            - StripPrefix=1    
+            
+        - id: notification-service
+          uri: lb://NOTIFICATION-SERVICE
+          predicates:
+            - Path=/notifications/**             
