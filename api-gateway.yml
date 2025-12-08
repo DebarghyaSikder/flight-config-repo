@@ -13,17 +13,13 @@ spring:
           lower-case-service-id: true
 
       routes:
-        # =================== FLIGHT-SERVICE ===================
         - id: flight-service
           uri: lb://FLIGHT-SERVICE
           predicates:
-            # external paths exposed by gateway
-            - Path=/api/flights/**,/api/flights/search/**,/api/flights/*
+            - Path=/api/flights/**
           filters:
-            # /api is removed before forwarding -> flight-service sees /flights/...
             - StripPrefix=1
 
-        # =================== BOOKING-SERVICE ==================
         - id: booking-service
           uri: lb://BOOKING-SERVICE
           predicates:

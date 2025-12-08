@@ -10,7 +10,6 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      # Eureka refers to itself via container name
-      defaultZone: http://eureka-server:8761/eureka
+      defaultZone: http://eureka-server:8761/eureka/
   instance:
     hostname: eureka-server

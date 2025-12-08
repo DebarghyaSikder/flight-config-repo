@@ -13,11 +13,11 @@ spring:
 
   data:
     mongodb:
-      # Mongo container name from docker-compose
       uri: mongodb://mongodb:27017/flights_micro_db
 
 eureka:
   client:
     service-url:
-      # Eureka container name from docker-compose
-      defaultZone: http://eureka-server:8761/eureka
+      defaultZone: http://eureka-server:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
