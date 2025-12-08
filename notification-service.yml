@@ -20,8 +20,13 @@ eureka:
   instance:
     prefer-ip-address: true
 
+rabbitmq:
+  exchange: booking.exchange
+  routing-key: booking.key
+  queue: booking.queue
+
 management:
   endpoints:
     web:
       exposure:
-        include: health,info
+        include: "*"
