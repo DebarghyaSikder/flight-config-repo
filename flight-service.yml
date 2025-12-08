@@ -4,18 +4,21 @@ server:
 spring:
   application:
     name: flight-service
+
   data:
     mongodb:
-      host: localhost
+      # Use MongoDB container name instead of localhost
+      host: mongodb
       port: 27017
-      database: flights_micro_db    
+      database: flights_micro_db
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://eureka-server:8761/eureka
     register-with-eureka: true
     fetch-registry: true
+
   instance:
     prefer-ip-address: true
 

@@ -4,18 +4,20 @@ server:
 spring:
   application:
     name: booking-service
-    
+
   rabbitmq:
-    host: localhost
+    host: rabbitmq-broker
     port: 5672
     username: guest
     password: guest
 
   data:
     mongodb:
-      uri: mongodb://localhost:27017/flights_micro_db
+      # Mongo container name from docker-compose
+      uri: mongodb://mongodb:27017/flights_micro_db
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      # Eureka container name from docker-compose
+      defaultZone: http://eureka-server:8761/eureka
