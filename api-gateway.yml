@@ -19,7 +19,6 @@ spring:
           predicates:
             # external paths exposed by gateway
             - Path=/api/flights/**,/api/flights/search/**,/api/flights/*
-
           filters:
             # /api is removed before forwarding -> flight-service sees /flights/...
             - StripPrefix=1
@@ -31,6 +30,12 @@ spring:
             - Path=/api/bookings/**
           filters:
             - StripPrefix=1
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          secret-key: "my-super-secret-jwt-key-that-is-long-enough"
 
 management:
   endpoints:
