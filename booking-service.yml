@@ -5,6 +5,15 @@ spring:
   application:
     name: booking-service
 
+  cloud:
+    config:
+      fail-fast: false
+      retry:
+        max-attempts: 10
+        initial-interval: 3000
+        multiplier: 1.5
+        max-interval: 15000
+
   rabbitmq:
     host: rabbitmq-broker
     port: 5672

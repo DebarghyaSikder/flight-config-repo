@@ -6,6 +6,14 @@ spring:
     name: api-gateway
 
   cloud:
+    config:
+      fail-fast: false
+      retry:
+        max-attempts: 10
+        initial-interval: 3000
+        multiplier: 1.5
+        max-interval: 15000
+
     gateway:
       discovery:
         locator:
@@ -31,19 +39,14 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          # Same secret you use when generating JWT on jwt.io
           secret-key: "my-super-secret-jwt-key-that-is-long-enough"
 
 eureka:
   client:
     service-url:
-      # Eureka container name
       defaultZone: http://eureka-server:8761/eureka
     register-with-eureka: true
     fetch-registry: true
-
-  instance:
-    prefer-ip-address: true
 
 management:
   endpoints:

@@ -5,8 +5,16 @@ spring:
   application:
     name: notification-service
 
+  cloud:
+    config:
+      fail-fast: false
+      retry:
+        max-attempts: 10
+        initial-interval: 3000
+        multiplier: 1.5
+        max-interval: 15000
+
   rabbitmq:
-    # RabbitMQ container name here
     host: rabbitmq-broker
     port: 5672
     username: guest
@@ -18,9 +26,6 @@ eureka:
       defaultZone: http://eureka-server:8761/eureka
     register-with-eureka: true
     fetch-registry: true
-
-  instance:
-    prefer-ip-address: true
 
 rabbitmq:
   exchange: booking.exchange

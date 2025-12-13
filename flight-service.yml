@@ -1,4 +1,32 @@
+server:
+  port: 8090
+
 spring:
+  application:
+    name: flight-service
+
+  cloud:
+    config:
+      fail-fast: false
+      retry:
+        max-attempts: 10
+        initial-interval: 3000
+        multiplier: 1.5
+        max-interval: 15000
+
   data:
     mongodb:
       uri: mongodb://mongodb:27017/flights_micro_db
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
