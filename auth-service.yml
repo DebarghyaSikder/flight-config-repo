@@ -1,0 +1,34 @@
+spring:
+  r2dbc:
+    url: r2dbc:mysql://mysql-auth:3306/flightapp_auth
+    username: root
+    password: password
+
+  data:
+    r2dbc:
+      repositories:
+        enabled: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${random.value}
+
+jwt:
+  secret: mySecretKeyForJWTTokenGenerationAndValidationMustBeLongEnough1234567890
+  expiration: 86400000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
